@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/ethereum-animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -109,6 +110,37 @@
             </a>
         </div>
     </section>
+
+    <!-- Ethereum Smart Contract Animation -->
+    <div class="eth-smart-contract-animation">
+        <div class="contract-container">
+            <div class="contract-header">
+                <div class="contract-title">Smart Contract</div>
+                <div class="contract-address">0x1a2b3c4d5e6f7g8h9i0j</div>
+            </div>
+            <div class="contract-code">
+                <div class="code-line"><span class="keyword">contract</span> <span class="contract-name">Web3Portfolio</span> {</div>
+                <div class="code-line">    <span class="keyword">address</span> <span class="variable">owner</span>;</div>
+                <div class="code-line">    <span class="keyword">string</span>[] <span class="variable">skills</span>;</div>
+                <div class="code-line">    <span class="keyword">uint256</span> <span class="variable">projectCount</span>;</div>
+                <div class="code-line"> </div>
+                <div class="code-line">    <span class="keyword">constructor</span>() {</div>
+                <div class="code-line">        <span class="variable">owner</span> = <span class="builtin">msg.sender</span>;</div>
+                <div class="code-line">        <span class="variable">projectCount</span> = 0;</div>
+                <div class="code-line">    }</div>
+                <div class="code-line"> </div>
+                <div class="code-line typing-effect">    <span class="keyword">function</span> <span class="function">addProject</span>(<span class="keyword">string</span> <span class="keyword">memory</span> _name) <span class="keyword">public</span> {</div>
+                <div class="code-line typing-effect">        <span class="keyword">require</span>(<span class="builtin">msg.sender</span> == <span class="variable">owner</span>);</div>
+                <div class="code-line typing-effect">        <span class="variable">projectCount</span>++;</div>
+                <div class="code-line typing-effect">    }</div>
+            </div>
+            <div class="contract-status">
+                <div class="status-circle"></div>
+                <div class="status-text">Contract Deployed</div>
+                <div class="gas-used">Gas Used: <span class="gas-counter">0</span> Wei</div>
+            </div>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about-section">
@@ -749,5 +781,6 @@
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/projects.js"></script>
+    <script src="js/ethereum.js"></script>
 </body>
 </html> 

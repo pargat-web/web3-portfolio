@@ -1,0 +1,479 @@
+/* ========== Ethereum-Inspired Animations ========== */
+
+/* Ethereum Logo Animation */
+.eth-logo {
+    position: absolute;
+    width: 40px;
+    height: 64px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.3s ease;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA1MiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTE2IDM4Ljc1VjUxLjEyNUwzMS45MDg1IDI5LjA2MjVMMTYgMzguNzVaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz48cGF0aCBkPSJNMTYgMFYyOC4xMjVMMzEuOSAyMC4yNUwxNiAwWiIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNMTYgMFYyOC4xMjVMMCAxOS41TDE2IDBaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjYiLz48cGF0aCBkPSJNMTYgMzguNzVWNTEuMTI1TDAgMjkuMDYyNUwxNiAzOC43NVoiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuMyIvPjwvc3ZnPg==');
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: float-eth 15s ease-in-out infinite;
+}
+
+@keyframes float-eth {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-40px) scale(1.1) rotate(5deg);
+    }
+    50% {
+        transform: translateY(20px) scale(0.9) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-20px) scale(1.05) rotate(2deg);
+    }
+}
+
+/* Ethereum Gas Fee Animation */
+.eth-gas {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(135deg, rgba(73, 139, 255, 0.8), rgba(170, 73, 255, 0.8));
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(1px);
+    z-index: -1;
+    animation: eth-gas-flow 6s linear infinite;
+}
+
+@keyframes eth-gas-flow {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Ethereum Hexadecimal Animation */
+.eth-hex {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: rgba(73, 139, 255, 0.25);
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+    white-space: nowrap;
+    animation: fade-hex 8s linear infinite;
+}
+
+.eth-hex::before {
+    content: attr(data-hex);
+}
+
+@keyframes fade-hex {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    10% {
+        opacity: 0.25;
+    }
+    90% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Smart Contract Animation */
+.smart-contract {
+    position: relative;
+    overflow: hidden;
+}
+
+.smart-contract::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(73, 139, 255, 0.05), 
+        transparent);
+    transform: translateX(-100%);
+    animation: contract-pulse 3s ease infinite;
+}
+
+@keyframes contract-pulse {
+    0% {
+        transform: translateX(-100%);
+    }
+    50%, 100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Ethereum Glow Effect */
+.eth-glow {
+    position: relative;
+}
+
+.eth-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 15px 3px rgba(73, 139, 255, 0.4);
+    opacity: 0;
+    animation: eth-glow-pulse 4s ease infinite;
+}
+
+@keyframes eth-glow-pulse {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Ethereum Stack Animation */
+.eth-stack {
+    position: relative;
+}
+
+.eth-stack::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 1px solid rgba(73, 139, 255, 0.2);
+    border-radius: inherit;
+    animation: stack-pulse 3s ease infinite;
+}
+
+.eth-stack::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px solid rgba(73, 139, 255, 0.1);
+    border-radius: inherit;
+    animation: stack-pulse 3s ease infinite 1s;
+}
+
+@keyframes stack-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.5;
+    }
+}
+
+/* Gas Fee Price Animation */
+.gas-price-animation {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: rgba(73, 139, 255, 0.9);
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(73, 139, 255, 0.1);
+    margin-left: 10px;
+    animation: gas-price-pulse 4s ease infinite;
+}
+
+.gas-price-animation::before {
+    content: '⛽';
+    margin-right: 4px;
+    font-size: 0.9rem;
+}
+
+@keyframes gas-price-pulse {
+    0%, 100% {
+        background: rgba(73, 139, 255, 0.1);
+    }
+    50% {
+        background: rgba(73, 139, 255, 0.2);
+    }
+}
+
+/* Ethereum Transaction Animation */
+.eth-transaction {
+    position: relative;
+    overflow: hidden;
+}
+
+.eth-transaction::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(73, 139, 255, 0.6) 50%,
+        transparent 100%);
+    transform: translateX(-100%);
+    animation: eth-transaction 3s linear infinite;
+}
+
+@keyframes eth-transaction {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Ethereum UI Button animations */
+.eth-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.eth-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transition: all 0.6s ease;
+}
+
+.eth-button:hover::before {
+    left: 100%;
+}
+
+.eth-button:hover {
+    box-shadow: 0 0 15px rgba(73, 139, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .eth-logo {
+        width: 30px;
+        height: 48px;
+    }
+    
+    .eth-gas {
+        width: 3px;
+        height: 3px;
+    }
+    
+    .eth-hex {
+        font-size: 0.6rem;
+    }
+}
+
+/* Smart Contract Animation Component */
+.eth-smart-contract-animation {
+    width: 100%;
+    padding: 2rem 0;
+    background: rgba(20, 20, 40, 0.5);
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contract-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(30, 30, 60, 0.8);
+    border-radius: 8px;
+    border: 1px solid rgba(73, 139, 255, 0.2);
+    box-shadow: 0 0 20px rgba(73, 139, 255, 0.2);
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+}
+
+.contract-header {
+    padding: 1rem;
+    background: rgba(40, 40, 80, 0.7);
+    border-bottom: 1px solid rgba(73, 139, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contract-title {
+    font-size: 1.2rem;
+    color: var(--text-bright);
+    font-weight: 600;
+}
+
+.contract-address {
+    font-size: 0.9rem;
+    color: rgba(73, 139, 255, 0.8);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    animation: blink-text 5s ease infinite;
+}
+
+@keyframes blink-text {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.contract-code {
+    padding: 1.5rem;
+    background: rgba(15, 15, 30, 0.9);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.code-line {
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(50, end);
+    width: fit-content;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.keyword {
+    color: #9876AA;
+}
+
+.contract-name {
+    color: #A5C261;
+}
+
+.variable {
+    color: #6C95EB;
+}
+
+.function {
+    color: #FFC66D;
+}
+
+.builtin {
+    color: #CC7832;
+}
+
+.contract-status {
+    padding: 1rem;
+    background: rgba(40, 40, 80, 0.7);
+    border-top: 1px solid rgba(73, 139, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4CAF50;
+    animation: pulse-green 2s ease infinite;
+}
+
+@keyframes pulse-green {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(76, 175, 80, 0);
+    }
+}
+
+.status-text {
+    color: var(--text-bright);
+    font-size: 0.9rem;
+}
+
+.gas-used {
+    margin-left: auto;
+    color: #FFA726;
+    font-size: 0.9rem;
+}
+
+/* Add lines animation for contract */
+.eth-smart-contract-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 90%, rgba(73, 139, 255, 0.1) 100%),
+        linear-gradient(0deg, transparent 90%, rgba(73, 139, 255, 0.1) 100%);
+    background-size: 20px 20px;
+    z-index: -1;
+    animation: bg-scroll 20s linear infinite;
+}
+
+@keyframes bg-scroll {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .contract-container {
+        max-width: 95%;
+    }
+    
+    .contract-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .contract-code {
+        font-size: 0.8rem;
+        max-height: 200px;
+    }
+} 
