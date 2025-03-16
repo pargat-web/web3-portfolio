@@ -1,23 +1,50 @@
 // Main JavaScript file for portfolio functionality
 
-document.addEventListener('DOMContentLoaded', function() {
-    initApp();
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all functionality
+    initNavigation();
+    initFormValidation();
+    initScrollToTop();
+    initSmoothScrolling();
+    observeIntersections();
+    initMobileMenu();
+    initHeroImageEffect();
+    initAboutImageEffect();
 });
 
-// Initialize all application components
-function initApp() {
-    // Initialize UI Components
+// Initialize navigation functionality
+function initNavigation() {
+    // Call the navbar initialization to ensure consistent navigation behavior
     initNavbar();
-    initThemeToggle();
-    initScrollEffects();
-    initFormValidation();
-    initProjectFilters();
-    initCardHoverEffects();
-    initSmoothScrolling();
-    initFadeInAnimations();
     
-    // Log initialization complete
-    console.log('Portfolio application initialized successfully');
+    // Set the active navigation link based on the current section
+    updateActiveNavLink();
+    
+    // Update active link on scroll
+    window.addEventListener('scroll', updateActiveNavLink);
+}
+
+// Update the active navigation link based on scroll position
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    const scrollPosition = window.scrollY + 100; // Add offset for header
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
 }
 
 // Navigation bar functionality
@@ -151,66 +178,95 @@ function initProjectFilters() {
 function initFormValidation() {
     const contactForm = document.getElementById('contactForm');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Reset previous error messages
-            const errorMessages = document.querySelectorAll('.error-message');
-            errorMessages.forEach(error => error.textContent = '');
-            
-            // Get form fields
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const messageInput = document.getElementById('message');
-            
-            // Validate inputs
-            let isValid = true;
-            
-            if (!nameInput.value.trim()) {
-                showError(nameInput, 'Name is required');
-                isValid = false;
-            }
-            
-            if (!emailInput.value.trim()) {
-                showError(emailInput, 'Email is required');
-                isValid = false;
-            } else if (!isValidEmail(emailInput.value)) {
-                showError(emailInput, 'Please enter a valid email address');
-                isValid = false;
-            }
-            
-            if (!messageInput.value.trim()) {
-                showError(messageInput, 'Message is required');
-                isValid = false;
-            }
-            
-            // If form is valid, show success message
-            if (isValid) {
-                const formContainer = document.querySelector('.contact-form');
-                formContainer.innerHTML = `
-                    <div class="success-message">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Message Sent Successfully!</h3>
-                        <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
-                        <button class="btn btn-primary" onclick="location.reload()">Send Another Message</button>
-                    </div>
-                `;
-            }
-        });
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Simple validation
+        if (name === '' || email === '' || subject === '' || message === '') {
+            showFormError('Please fill out all fields');
+            return;
+        }
+        
+        // Email validation
+        if (!isValidEmail(email)) {
+            showFormError('Please enter a valid email address');
+            return;
+        }
+        
+        // Form is valid, show success message
+        showFormSuccess('Your message has been sent! I will get back to you soon.');
+        
+        // Reset form
+        contactForm.reset();
+    });
+}
+
+/**
+ * Show form error message
+ * @param {string} message - The error message to display
+ */
+function showFormError(message) {
+    const submitBtn = document.querySelector('.submit-btn');
+    
+    // Create or update error message
+    let errorEl = document.querySelector('.form-error');
+    
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'form-error';
+        submitBtn.parentNode.insertBefore(errorEl, submitBtn);
     }
     
-    // Helper functions for validation
-    function showError(input, message) {
-        const formGroup = input.parentElement;
-        const errorElement = formGroup.querySelector('.error-message');
-        errorElement.textContent = message;
+    errorEl.textContent = message;
+    errorEl.style.opacity = '1';
+    
+    // Clear error after 3 seconds
+    setTimeout(() => {
+        errorEl.style.opacity = '0';
+    }, 3000);
+}
+
+/**
+ * Show form success message
+ * @param {string} message - The success message to display
+ */
+function showFormSuccess(message) {
+    const contactForm = document.getElementById('contactForm');
+    
+    // Create or update success message
+    let successEl = document.querySelector('.form-success');
+    
+    if (!successEl) {
+        successEl = document.createElement('div');
+        successEl.className = 'form-success';
+        contactForm.appendChild(successEl);
     }
     
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
+    successEl.textContent = message;
+    successEl.style.opacity = '1';
+    
+    // Clear success message after 5 seconds
+    setTimeout(() => {
+        successEl.style.opacity = '0';
+    }, 5000);
+}
+
+/**
+ * Validate email format
+ * @param {string} email - The email to validate
+ * @returns {boolean} - Whether the email is valid
+ */
+function isValidEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email.toLowerCase());
 }
 
 // Card hover highlight effect
@@ -260,25 +316,23 @@ function initCardHoverEffects() {
 
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Only if the href is not just "#"
-            if (this.getAttribute('href') !== '#') {
+    // Smooth scroll for all links that point to an ID
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            
+            // Skip if it's just # or not an ID selector
+            if (targetId === '#' || targetId.length <= 1) return;
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop;
-                    
-                    window.scrollTo({
-                        top: offsetTop - 70, // Adjust for navbar height
-                        behavior: 'smooth'
-                    });
-                }
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             }
         });
     });
@@ -409,4 +463,156 @@ function debounce(func, delay) {
             func.apply(this, args);
         }, delay);
     };
+}
+
+/**
+ * Initialize scroll to top button
+ */
+function initScrollToTop() {
+    const scrollTopBtn = document.querySelector('.back-to-top');
+    
+    if (!scrollTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+/**
+ * Initialize intersection observer for animations
+ */
+function observeIntersections() {
+    // Only run if Intersection Observer is supported
+    if (!('IntersectionObserver' in window)) return;
+    
+    // Elements to observe
+    const elements = document.querySelectorAll('.project-card, .timeline-item, .skill-item, .section-header');
+    
+    // Create observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Observe elements
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Mobile menu functionality
+function initMobileMenu() {
+    console.log("Initializing mobile menu");
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+    
+    console.log("Hamburger element:", hamburger);
+    console.log("Nav list element:", navList);
+    
+    if (hamburger && navList) {
+        console.log("Mobile menu elements found, setting up event listeners");
+        
+        // Toggle menu when hamburger is clicked
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default behavior
+            e.stopPropagation(); // Prevent the click from bubbling up
+            console.log("Hamburger clicked");
+            hamburger.classList.toggle('active');
+            navList.classList.toggle('active');
+            console.log("Nav list active:", navList.classList.contains('active'));
+            document.body.classList.toggle('menu-open'); // Add class to body to prevent scrolling
+        });
+        
+        // Close the mobile menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                console.log("Nav link clicked");
+                hamburger.classList.remove('active');
+                navList.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (navList.classList.contains('active') && 
+                !navList.contains(event.target) && 
+                !hamburger.contains(event.target)) {
+                console.log("Clicking outside menu");
+                hamburger.classList.remove('active');
+                navList.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    } else {
+        console.warn("Mobile menu elements not found:", { hamburger, navList });
+    }
+}
+
+/**
+ * Initialize hero image hover effect
+ */
+function initHeroImageEffect() {
+    const heroImage = document.querySelector('.image-container');
+    const profileImage = document.querySelector('.profile-image');
+    
+    if (!heroImage || !profileImage) return;
+    
+    // Add subtle rotation on mouse move
+    heroImage.addEventListener('mousemove', (e) => {
+        const rect = heroImage.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+        
+        profileImage.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg) translateY(-5px) scale(1.05)`;
+    });
+    
+    // Reset on mouse leave
+    heroImage.addEventListener('mouseleave', () => {
+        profileImage.style.transform = '';
+    });
+}
+
+// Add 3D effect to the about image
+function initAboutImageEffect() {
+    const aboutImage = document.querySelector('.about-image .image-container');
+    const aboutProfileImage = document.querySelector('.about-profile-image');
+    
+    if (!aboutImage || !aboutProfileImage) return;
+    
+    // Add subtle rotation on mouse move
+    aboutImage.addEventListener('mousemove', (e) => {
+        const rect = aboutImage.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+        
+        aboutProfileImage.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg) translateY(-5px) scale(1.05)`;
+    });
+    
+    // Reset on mouse leave
+    aboutImage.addEventListener('mouseleave', () => {
+        aboutProfileImage.style.transform = '';
+    });
 } 
