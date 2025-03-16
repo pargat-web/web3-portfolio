@@ -13,6 +13,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Blockchain Loader -->
+    <div class="blockchain-loader">
+        <div class="loader-container">
+            <div class="block-chain">
+                <div class="block block-1">
+                    <div class="block-content">
+                        <div class="block-hash">#F8d7c9</div>
+                        <div class="binary-data">01011010</div>
+                    </div>
+                </div>
+                <div class="chain"></div>
+                <div class="block block-2">
+                    <div class="block-content">
+                        <div class="block-hash">#A5b3e7</div>
+                        <div class="binary-data">10110110</div>
+                    </div>
+                </div>
+                <div class="chain"></div>
+                <div class="block block-3">
+                    <div class="block-content">
+                        <div class="block-hash">#C9e2f4</div>
+                        <div class="binary-data">01001101</div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-text">Loading Blockchain Portfolio</div>
+        </div>
+    </div>
+
     <!-- Animated Background -->
     <div class="background-container">
         <div class="stars"></div>
@@ -65,7 +94,6 @@
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Get In Touch</a>
                         <a href="#projects" class="btn btn-secondary">View Projects</a>
-                        <a href="assets/resume/pargat-singh-resume.pdf" class="btn btn-secondary" download><i class="fas fa-download"></i> Download Resume</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -492,113 +520,126 @@
                 <p class="section-description">What my clients and collaborators have to say about working with me.</p>
             </div>
             
-            <div class="testimonials-showcase">
+            <div class="testimonials-wrapper">
                 <div class="testimonials-background">
-                    <div class="bg-circle circle-1"></div>
-                    <div class="bg-circle circle-2"></div>
                     <i class="fas fa-quote-left quote-bg-icon"></i>
                 </div>
                 
-                <div class="testimonials-track-container">
-                    <div class="testimonials-track">
-                        <div class="testimonial-slide active" data-index="0">
-                            <div class="testimonial-content">
-                                <div class="testimonial-text">
-                                    <p>"Working with Pargat was an exceptional experience. His deep understanding of blockchain technology and attention to detail resulted in a product that exceeded our expectations. Highly recommend to anyone needing high-quality development work."</p>
-                                </div>
-                                <div class="testimonial-client">
-                                    <div class="client-info">
-                                        <div class="client-image">
+                <div class="testimonials-cards-container">
+                    <div class="testimonials-cards">
+                        <div class="testimonial-card active" data-index="0">
+                            <div class="testimonial-inner">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-profile">
+                                        <div class="testimonial-avatar">
                                             <img src="assets/images/testimonials/client1.jpg" alt="Sarah Johnson">
                                         </div>
-                                        <div class="client-details">
-                                            <h4>Sarah Johnson</h4>
-                                            <p>CTO, TechNova</p>
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                            </div>
+                                        <div class="testimonial-person">
+                                            <h4 class="testimonial-name">Sarah Johnson</h4>
+                                            <p class="testimonial-position">CTO, TechNova</p>
                                         </div>
                                     </div>
-                                    <div class="project-badge">
-                                        <span>DeFi Platform</span>
+                                    <div class="testimonial-quote-icon">
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonial-body">
+                                    <p>Working with this developer was an exceptional experience. Their deep understanding of blockchain technology and attention to detail resulted in a product that exceeded our expectations.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="testimonial-project">
+                                        <span class="project-tag">DeFi Platform</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="testimonial-slide" data-index="1">
-                            <div class="testimonial-content">
-                                <div class="testimonial-text">
-                                    <p>"Pargat's technical expertise with smart contracts is unmatched. He delivered a secure, well-documented solution on time and helped our team understand the implementation details. His communication throughout the project was excellent."</p>
-                                </div>
-                                <div class="testimonial-client">
-                                    <div class="client-info">
-                                        <div class="client-image">
+                        <div class="testimonial-card" data-index="1">
+                            <div class="testimonial-inner">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-profile">
+                                        <div class="testimonial-avatar">
                                             <img src="assets/images/testimonials/client2.jpg" alt="Michael Chen">
                                         </div>
-                                        <div class="client-details">
-                                            <h4>Michael Chen</h4>
-                                            <p>Founder, BlockFin</p>
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                            </div>
+                                        <div class="testimonial-person">
+                                            <h4 class="testimonial-name">Michael Chen</h4>
+                                            <p class="testimonial-position">Founder, BlockFin</p>
                                         </div>
                                     </div>
-                                    <div class="project-badge">
-                                        <span>Smart Contract Development</span>
+                                    <div class="testimonial-quote-icon">
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonial-body">
+                                    <p>This developer's technical expertise with smart contracts is unmatched. They delivered a secure, well-documented solution on time and helped our team understand the implementation details.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="testimonial-project">
+                                        <span class="project-tag">Smart Contract</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="testimonial-slide" data-index="2">
-                            <div class="testimonial-content">
-                                <div class="testimonial-text">
-                                    <p>"We hired Pargat to build our NFT marketplace, and he delivered a spectacular product. His UI/UX skills combined with blockchain knowledge created a seamless and intuitive platform that our users love. Would definitely work with him again."</p>
-                                </div>
-                                <div class="testimonial-client">
-                                    <div class="client-info">
-                                        <div class="client-image">
+                        <div class="testimonial-card" data-index="2">
+                            <div class="testimonial-inner">
+                                <div class="testimonial-header">
+                                    <div class="testimonial-profile">
+                                        <div class="testimonial-avatar">
                                             <img src="assets/images/testimonials/client3.jpg" alt="Jessica Williams">
                                         </div>
-                                        <div class="client-details">
-                                            <h4>Jessica Williams</h4>
-                                            <p>Art Director, DigitalArt</p>
-                                            <div class="rating">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </div>
+                                        <div class="testimonial-person">
+                                            <h4 class="testimonial-name">Jessica Williams</h4>
+                                            <p class="testimonial-position">Art Director, DigitalArt</p>
                                         </div>
                                     </div>
-                                    <div class="project-badge">
-                                        <span>NFT Marketplace</span>
+                                    <div class="testimonial-quote-icon">
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonial-body">
+                                    <p>We hired this developer to build our NFT marketplace, and they delivered a spectacular product. Their UI/UX skills combined with blockchain knowledge created a seamless and intuitive platform.</p>
+                                </div>
+                                <div class="testimonial-footer">
+                                    <div class="testimonial-rating" aria-label="4.5 out of 5 stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <div class="testimonial-project">
+                                        <span class="project-tag">NFT Marketplace</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="testimonial-controls">
-                        <button class="testimonial-arrow prev" aria-label="Previous testimonial">
+                    <div class="testimonial-navigation">
+                        <button class="testimonial-nav-btn prev" aria-label="Previous testimonial">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <div class="testimonial-dots">
-                            <button class="testimonial-dot active" data-index="0" aria-label="Testimonial 1"></button>
-                            <button class="testimonial-dot" data-index="1" aria-label="Testimonial 2"></button>
-                            <button class="testimonial-dot" data-index="2" aria-label="Testimonial 3"></button>
+                        <div class="testimonial-indicators">
+                            <button class="testimonial-indicator active" data-index="0" aria-label="Go to testimonial 1"></button>
+                            <button class="testimonial-indicator" data-index="1" aria-label="Go to testimonial 2"></button>
+                            <button class="testimonial-indicator" data-index="2" aria-label="Go to testimonial 3"></button>
                         </div>
-                        <button class="testimonial-arrow next" aria-label="Next testimonial">
+                        <button class="testimonial-nav-btn next" aria-label="Next testimonial">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>

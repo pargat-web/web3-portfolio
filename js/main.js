@@ -1,6 +1,9 @@
 // Main JavaScript file for portfolio functionality
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize blockchain loader
+    initBlockchainLoader();
+    
     // Initialize all functionality
     initNavigation();
     initFormValidation();
@@ -13,6 +16,71 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollDownButtons();
     initTestimonialsCarousel();
 });
+
+/**
+ * Initialize the blockchain-inspired loader
+ */
+function initBlockchainLoader() {
+    const loader = document.querySelector('.blockchain-loader');
+    if (!loader) return;
+    
+    // Add some blockchain animation effects
+    animateBlockchainLoader();
+    
+    // Simulate loading time (you can adjust this based on your site's actual loading needs)
+    setTimeout(() => {
+        loader.classList.add('fade-out');
+        
+        // After animation completes, hide the loader
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 600); // matches transition time in CSS
+    }, 2500); // Show loader for 2.5 seconds
+}
+
+/**
+ * Add some dynamic animations to the blockchain loader
+ */
+function animateBlockchainLoader() {
+    // Get the blocks and add some randomized animations
+    const blocks = document.querySelectorAll('.block');
+    
+    blocks.forEach((block, index) => {
+        // Randomize the binary data to change periodically
+        const binaryElement = block.querySelector('.binary-data');
+        if (binaryElement) {
+            // Update binary data every second with random binary strings
+            setInterval(() => {
+                let binary = '';
+                for (let i = 0; i < 8; i++) {
+                    binary += Math.random() > 0.5 ? '1' : '0';
+                }
+                binaryElement.textContent = binary;
+            }, 1000 + (index * 300)); // Stagger the updates
+        }
+        
+        // Add a slight wobble animation to each block
+        block.style.animationDelay = `${index * 0.2}s`;
+    });
+    
+    // Update the loading text with different blockchain-related terms
+    const loaderText = document.querySelector('.loader-text');
+    if (loaderText) {
+        const loadingMessages = [
+            'Loading Blockchain Portfolio',
+            'Validating Blocks',
+            'Syncing Nodes',
+            'Mining Experience',
+            'Verifying Credentials'
+        ];
+        
+        let messageIndex = 0;
+        setInterval(() => {
+            messageIndex = (messageIndex + 1) % loadingMessages.length;
+            loaderText.textContent = loadingMessages[messageIndex];
+        }, 800);
+    }
+}
 
 // Initialize navigation functionality
 function initNavigation() {
@@ -642,72 +710,72 @@ function initScrollDownButtons() {
 
 // Testimonials Carousel
 function initTestimonialsCarousel() {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.testimonial-dot');
-    const prevBtn = document.querySelector('.testimonial-arrow.prev');
-    const nextBtn = document.querySelector('.testimonial-arrow.next');
+    const cards = document.querySelectorAll('.testimonial-card');
+    const indicators = document.querySelectorAll('.testimonial-indicator');
+    const prevBtn = document.querySelector('.testimonial-nav-btn.prev');
+    const nextBtn = document.querySelector('.testimonial-nav-btn.next');
     
     let currentIndex = 0;
-    const totalSlides = slides.length;
+    const totalCards = cards.length;
     let autoSlideTimer;
 
-    // Show specific slide
-    function showSlide(index) {
-        // Hide all slides
-        slides.forEach(slide => {
-            slide.classList.remove('active');
+    // Show specific card
+    function showCard(index) {
+        // Hide all cards
+        cards.forEach(card => {
+            card.classList.remove('active');
         });
         
-        // Deactivate all dots
-        dots.forEach(dot => {
-            dot.classList.remove('active');
+        // Deactivate all indicators
+        indicators.forEach(indicator => {
+            indicator.classList.remove('active');
         });
         
-        // Show the current slide and activate corresponding dot
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
+        // Show the current card and activate corresponding indicator
+        cards[index].classList.add('active');
+        indicators[index].classList.add('active');
         
         currentIndex = index;
     }
 
-    // Next slide
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        showSlide(currentIndex);
+    // Next card
+    function nextCard() {
+        currentIndex = (currentIndex + 1) % totalCards;
+        showCard(currentIndex);
     }
 
-    // Previous slide
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        showSlide(currentIndex);
+    // Previous card
+    function prevCard() {
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        showCard(currentIndex);
     }
 
     // Add event listeners
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            prevSlide();
+            prevCard();
             resetAutoSlide();
         });
     }
     
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            nextSlide();
+            nextCard();
             resetAutoSlide();
         });
     }
 
-    // Add dot click events
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showSlide(index);
+    // Add indicator click events
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showCard(index);
             resetAutoSlide();
         });
     });
 
     // Setup auto slide
     function startAutoSlide() {
-        autoSlideTimer = setInterval(nextSlide, 6000);
+        autoSlideTimer = setInterval(nextCard, 5000);
     }
 
     function resetAutoSlide() {
@@ -719,7 +787,7 @@ function initTestimonialsCarousel() {
     startAutoSlide();
 
     // Pause auto-slide when hovering over testimonials
-    const testimonialsContainer = document.querySelector('.testimonials-track-container');
+    const testimonialsContainer = document.querySelector('.testimonials-cards-container');
     if (testimonialsContainer) {
         testimonialsContainer.addEventListener('mouseenter', () => {
             clearInterval(autoSlideTimer);
@@ -730,6 +798,6 @@ function initTestimonialsCarousel() {
         });
     }
 
-    // Initialize first slide
-    showSlide(currentIndex);
+    // Initialize first card
+    showCard(currentIndex);
 } 
