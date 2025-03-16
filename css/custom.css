@@ -1,0 +1,8 @@
+/* Custom styles for desktop-only elements */
+
+/* Hide scroll down buttons in all sections except hero section on desktop */
+@media screen and (min-width: 769px) {
+    section:not(.hero-section) .section-scroll-container {
+        display: none;
+    }
+} 

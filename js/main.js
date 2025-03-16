@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initHeroImageEffect();
     initAboutImageEffect();
+    initScrollDownButtons();
+    initTestimonialsCarousel();
 });
 
 // Initialize navigation functionality
@@ -615,4 +617,119 @@ function initAboutImageEffect() {
     aboutImage.addEventListener('mouseleave', () => {
         aboutProfileImage.style.transform = '';
     });
+}
+
+// Initialize the scroll functionality for the scroll down buttons
+function initScrollDownButtons() {
+    const scrollButtons = document.querySelectorAll('.scroll-down-btn');
+    
+    scrollButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Smooth scroll to the target section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Testimonials Carousel
+function initTestimonialsCarousel() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    const prevBtn = document.querySelector('.testimonial-arrow.prev');
+    const nextBtn = document.querySelector('.testimonial-arrow.next');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoSlideTimer;
+
+    // Show specific slide
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Deactivate all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Show the current slide and activate corresponding dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentIndex = index;
+    }
+
+    // Next slide
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // Previous slide
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+    }
+
+    // Add event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+    }
+
+    // Add dot click events
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            resetAutoSlide();
+        });
+    });
+
+    // Setup auto slide
+    function startAutoSlide() {
+        autoSlideTimer = setInterval(nextSlide, 6000);
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideTimer);
+        startAutoSlide();
+    }
+
+    // Initialize with auto-sliding
+    startAutoSlide();
+
+    // Pause auto-slide when hovering over testimonials
+    const testimonialsContainer = document.querySelector('.testimonials-track-container');
+    if (testimonialsContainer) {
+        testimonialsContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideTimer);
+        });
+        
+        testimonialsContainer.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+    }
+
+    // Initialize first slide
+    showSlide(currentIndex);
 } 

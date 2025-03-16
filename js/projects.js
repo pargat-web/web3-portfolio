@@ -288,25 +288,26 @@ function renderProjects(projects) {
         
         // Apply staggered animation delay based on index
         projectCard.style.animationDelay = `${index * 150}ms`;
+        projectCard.dataset.cardIndex = index;
         
         projectCard.innerHTML = `
             <div class="project-image">
                 <img src="${project.image}" alt="${project.title}" loading="lazy" onerror="this.src = window.defaultProjectImage || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCI+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzFhMWUyNCIvPgogIDxnIGZpbGw9IiMzYjVmZmYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwIDUwKSI+CiAgICA8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBvcGFjaXR5PSIwLjIiLz4KICAgIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjEwMCIgcj0iMzAiIG9wYWNpdHk9IjAuMyIvPgogIDwvZz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAyNHB4OyBmb250LXdlaWdodDogYm9sZDsgZmlsbDogI2ZmZjsgdGV4dC1hbmNob3I6IG1pZGRsZTsgZG9taW5hbnQtYmFzZWxpbmU6IG1pZGRsZTsiPldlYjMgUHJvamVjdDwvdGV4dD4KPC9zdmc+c2c+'; this.classList.add('fallback-image');">
-                <div class="project-links">
-                    <a href="${demoLink}" class="project-link demo-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-eye"></i> Demo
-                    </a>
-                    <a href="${repoLink}" class="project-link code-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-code"></i> Code
-                    </a>
-                </div>
+                <span class="project-category">${category}</span>
             </div>
-            <div class="project-info">
-                <span class="project-category-badge">${category}</span>
+            <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
-                <div class="project-tech">
-                    ${tags.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                <div class="project-tags">
+                    ${tags.map(tech => `<span class="project-tag">${tech}</span>`).join('')}
+                </div>
+                <div class="project-links-container">
+                    <a href="${demoLink}" class="project-link demo" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-eye"></i> Live Demo
+                    </a>
+                    <a href="${repoLink}" class="project-link code" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-code"></i> Source Code
+                    </a>
                 </div>
             </div>
         `;

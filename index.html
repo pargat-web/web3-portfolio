@@ -7,6 +7,7 @@
     <meta name="keywords" content="web developer, blockchain, dapp, ethereum, react, javascript, portfolio">
     <title>Pargat Singh | Full-Stack Developer & Blockchain Enthusiast</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,12 +33,17 @@
                     <span class="bar"></span>
                 </div>
                 <ul class="nav-list">
-                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
-                    <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                    <li><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a></li>
-                    <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> Projects</a></li>
-                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#featured-projects" class="nav-link">Featured</a></li>
+                    <li><a href="#blogs" class="nav-link">Blog</a></li>
+                    <li><a href="#news" class="nav-link">News</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -59,6 +65,7 @@
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Get In Touch</a>
                         <a href="#projects" class="btn btn-secondary">View Projects</a>
+                        <a href="assets/resume/pargat-singh-resume.pdf" class="btn btn-secondary" download><i class="fas fa-download"></i> Download Resume</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -68,9 +75,10 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
+        <div class="section-scroll-container">
+            <a href="#about" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
@@ -109,6 +117,70 @@
                 </div>
             </div>
         </div>
+        <div class="section-scroll-container">
+            <a href="#services" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My <span class="highlight">Services</span></h2>
+                <p class="section-description">I offer a range of specialized services to help businesses build modern digital experiences and leverage blockchain technology.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Application Development</h3>
+                    <p>Creating responsive, user-friendly web applications with modern frameworks like React, Angular, and Vue.js to meet your business needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Developing cross-platform mobile applications with technologies like React Native that provide native-like performance across iOS and Android.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <p>Building scalable and secure server-side applications using Node.js, Express, and MongoDB to power your applications with reliable API services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <h3>Blockchain Development</h3>
+                    <p>Creating decentralized applications (dApps) and smart contracts on Ethereum and other blockchain platforms to bring trust and security to your digital solutions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Implementing and deploying applications on AWS, Google Cloud, or Azure with DevOps practices to ensure scalability and reliability.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Web3 Integration</h3>
+                    <p>Integrating Web3 technologies into existing applications, creating crypto wallets, NFT marketplaces, and decentralized finance (DeFi) solutions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#experience" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
     </section>
 
     <!-- Education Section -->
@@ -121,31 +193,50 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Postgraduate Degree, Full Stack Software Development</h3>
-                        <p class="timeline-date">Sep 2024 - Sep 2026</p>
-                        <p class="timeline-institution">Lambton College, Ottawa, Canada</p>
-                        <p>🚀 Currently pursuing a Full Stack Software Development course at Lambton College, Ottawa, Canada. This program covers:</p>
-                        <p>✔ Frontend Development – HTML, CSS, JavaScript, React<br>
-                           ✔ Backend Development – Node.js, Express.js, REST APIs<br>
-                           ✔ Database Management – MySQL, MongoDB<br>
-                           ✔ Cloud & DevOps – AWS, Docker<br>
-                           ✔ Agile & Project Management – Scrum, Jira</p>
-                        <p>💡 Working on hands-on projects, real-world applications, and mastering full-stack development for building scalable web applications.</p>
-                        <p><strong>Skills:</strong> HTML · Cascading Style Sheets (CSS) · javascript · Node.js · Python (Programming Language) · C# · DSA</p>
+                        <div class="education-content-wrapper">
+                            <div class="education-image">
+                                <img src="assets/images/lambton.png" alt="Lambton College" class="education-logo">
+                            </div>
+                            <div class="education-details">
+                                <h3>Postgraduate Degree, Full Stack Software Development</h3>
+                                <p class="timeline-date">Sep 2024 - Sep 2026</p>
+                                <p class="timeline-institution">Lambton College, Ottawa, Canada</p>
+                                <p>🚀 Currently pursuing a Full Stack Software Development course at Lambton College, Ottawa, Canada. This program covers:</p>
+                                <p>✔ Frontend Development – HTML, CSS, JavaScript, React<br>
+                                   ✔ Backend Development – Node.js, Express.js, REST APIs<br>
+                                   ✔ Database Management – MySQL, MongoDB<br>
+                                   ✔ Cloud & DevOps – AWS, Docker<br>
+                                   ✔ Agile & Project Management – Scrum, Jira</p>
+                                <p>💡 Working on hands-on projects, real-world applications, and mastering full-stack development for building scalable web applications.</p>
+                                <p><strong>Skills:</strong> HTML · Cascading Style Sheets (CSS) · javascript · Node.js · Python (Programming Language) · C# · DSA</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>B.TECH, Electrical, Electronics and Communications Engineering</h3>
-                        <p class="timeline-date">Jun 2015 - Dec 2019</p>
-                        <p class="timeline-institution">Guru Nanak Dev Engineering College, Ludhiana</p>
-                        <p><strong>Activities and societies:</strong> Member of College Sports committee and Captain of College Cycling Team. Founder of GNE Robo Team.</p>
-                        <p><strong>Awards:</strong> Inter University Best Cyclist 2016-17</p>
-                        <p><strong>Skills:</strong> MySQL · JavaScript · Arduino IDE · Chart.js · SQL · API Development · Postman API · HTML · Robotics · Node.js · Internet of Things (IoT) · Facebook API · Cascading Style Sheets (CSS) · Home Automation · API Testing</p>
+                        <div class="education-content-wrapper">
+                            <div class="education-image">
+                                <img src="assets/images/gne.jpg" alt="Guru Nanak Dev Engineering College" class="education-logo">
+                            </div>
+                            <div class="education-details">
+                                <h3>B.TECH, Electrical, Electronics and Communications Engineering</h3>
+                                <p class="timeline-date">Jun 2015 - Dec 2019</p>
+                                <p class="timeline-institution">Guru Nanak Dev Engineering College, Ludhiana</p>
+                                <p><strong>Activities and societies:</strong> Member of College Sports committee and Captain of College Cycling Team. Founder of GNE Robo Team.</p>
+                                <p><strong>Awards:</strong> Inter University Best Cyclist 2016-17</p>
+                                <p><strong>Skills:</strong> MySQL · JavaScript · Arduino IDE · Chart.js · SQL · API Development · Postman API · HTML · Robotics · Node.js · Internet of Things (IoT) · Facebook API · Cascading Style Sheets (CSS) · Home Automation · API Testing</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#projects" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
@@ -184,6 +275,11 @@
                 </div>
             </div>
         </div>
+        <div class="section-scroll-container">
+            <a href="#education" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
     </section>
 
     <!-- Projects Section -->
@@ -204,6 +300,315 @@
                     <p>Loading amazing projects...</p>
                 </div>
             </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#featured-projects" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="featured-projects" class="featured-projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Highlighted work that showcase my best skills</p>
+            </div>
+            <div class="featured-projects-grid">
+                <div class="featured-project">
+                    <span class="featured-badge">Featured</span>
+                    <img src="images/featured-project-1.jpg" alt="Featured Project" class="featured-project-image">
+                    <div class="featured-project-content">
+                        <h3 class="featured-project-title">DeFi Exchange Platform</h3>
+                        <p class="featured-project-description">A fully-featured decentralized exchange with advanced trading features, liquidity pools, and staking mechanisms. Built with React, Solidity, and integrated with various blockchain networks.</p>
+                        <div class="featured-project-links">
+                            <a href="#" class="btn btn-primary">Live Demo</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-project">
+                    <span class="featured-badge">Featured</span>
+                    <img src="images/featured-project-2.jpg" alt="Featured Project" class="featured-project-image">
+                    <div class="featured-project-content">
+                        <h3 class="featured-project-title">NFT Marketplace</h3>
+                        <p class="featured-project-description">A comprehensive NFT marketplace with minting, buying, selling, and auctioning capabilities. Features a responsive UI, wallet integration, and metadata handling for collectibles.</p>
+                        <div class="featured-project-links">
+                            <a href="#" class="btn btn-primary">Live Demo</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blogs" class="blogs-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My <span class="highlight">Blog</span></h2>
+                <p class="section-description">Thoughts, insights, and tutorials on web development, blockchain technology, and software engineering.</p>
+            </div>
+            <div class="blog-magazine-layout">
+                <div class="blog-featured">
+                    <div class="blog-card-large">
+                        <div class="blog-image-wrapper">
+                            <img src="assets/images/blogs/blog1.jpg" alt="Featured Blog" class="blog-image">
+                            <div class="blog-overlay">
+                                <div class="blog-category">Web3</div>
+                                <div class="blog-date-large">Oct 12, 2023</div>
+                            </div>
+                        </div>
+                        <div class="blog-content-large">
+                            <h3 class="blog-title-large">The Future of Decentralized Applications</h3>
+                            <p class="blog-excerpt">Exploring how dApps are reshaping industries and creating new opportunities for developers and users alike. The landscape of decentralized applications continues to evolve at a rapid pace, offering exciting possibilities for innovation.</p>
+                            <div class="blog-meta">
+                                <span class="blog-author"><i class="fas fa-user-circle"></i> Pargat Singh</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                            </div>
+                            <a href="#" class="blog-button">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-grid-small">
+                    <div class="blog-card-small">
+                        <div class="blog-image-small">
+                            <img src="assets/images/blogs/blog2.jpg" alt="Blog 2">
+                            <div class="blog-overlay-small">
+                                <div class="blog-category">Development</div>
+                            </div>
+                        </div>
+                        <div class="blog-content-small">
+                            <div class="blog-date-small">Sep 28, 2023</div>
+                            <h3 class="blog-title-small">Building Efficient React Applications</h3>
+                            <p class="blog-excerpt-small">Tips and best practices for creating high-performance React applications that scale well.</p>
+                            <a href="#" class="blog-link-small">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card-small">
+                        <div class="blog-image-small">
+                            <img src="assets/images/blogs/blog3.jpg" alt="Blog 3">
+                            <div class="blog-overlay-small">
+                                <div class="blog-category">Blockchain</div>
+                            </div>
+                        </div>
+                        <div class="blog-content-small">
+                            <div class="blog-date-small">Sep 05, 2023</div>
+                            <h3 class="blog-title-small">Understanding Smart Contract Security</h3>
+                            <p class="blog-excerpt-small">A deep dive into the common security vulnerabilities in smart contracts.</p>
+                            <a href="#" class="blog-link-small">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card-small">
+                        <div class="blog-image-small">
+                            <img src="assets/images/blogs/blog1.jpg" alt="Blog 4">
+                            <div class="blog-overlay-small">
+                                <div class="blog-category">Web3</div>
+                            </div>
+                        </div>
+                        <div class="blog-content-small">
+                            <div class="blog-date-small">Aug 17, 2023</div>
+                            <h3 class="blog-title-small">NFT Trends to Watch in 2023</h3>
+                            <p class="blog-excerpt-small">Exploring the latest innovations and market trends in the NFT space.</p>
+                            <a href="#" class="blog-link-small">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blogs-newsletter">
+                <div class="newsletter-content">
+                    <h3><i class="fas fa-paper-plane"></i> Subscribe to My Blog</h3>
+                    <p>Get the latest articles and insights delivered straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="blogs-cta">
+                <a href="#" class="btn btn-secondary">View All Posts</a>
+            </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#news" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest <span class="highlight">News</span></h2>
+                <p class="section-description">Updates on my projects, career milestones, and upcoming technologies I'm exploring.</p>
+            </div>
+            <div class="news-container">
+                <div class="news-item">
+                    <div class="news-date">November 10, 2023</div>
+                    <h3>Launched New NFT Collection</h3>
+                    <p>Successfully launched a collection of 10,000 generative NFTs with unique traits and metadata, built on Ethereum.</p>
+                    <a href="#" class="news-link">Learn more <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">October 25, 2023</div>
+                    <h3>Speaking at ETH Global Hackathon</h3>
+                    <p>Invited as a speaker to present on Web3 frontend development best practices at the upcoming ETH Global hackathon.</p>
+                    <a href="#" class="news-link">Learn more <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">October 12, 2023</div>
+                    <h3>Published Research on Gas Optimization</h3>
+                    <p>Co-authored a technical paper on gas optimization techniques for complex Ethereum smart contracts.</p>
+                    <a href="#" class="news-link">Learn more <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">September 30, 2023</div>
+                    <h3>DeFi Dashboard Reaches 10K Users</h3>
+                    <p>My DeFi portfolio tracking dashboard has reached the milestone of 10,000 active users.</p>
+                    <a href="#" class="news-link">Learn more <i class="fas fa-long-arrow-alt-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#testimonials" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client <span class="highlight">Testimonials</span></h2>
+                <p class="section-description">What my clients and collaborators have to say about working with me.</p>
+            </div>
+            
+            <div class="testimonials-showcase">
+                <div class="testimonials-background">
+                    <div class="bg-circle circle-1"></div>
+                    <div class="bg-circle circle-2"></div>
+                    <i class="fas fa-quote-left quote-bg-icon"></i>
+                </div>
+                
+                <div class="testimonials-track-container">
+                    <div class="testimonials-track">
+                        <div class="testimonial-slide active" data-index="0">
+                            <div class="testimonial-content">
+                                <div class="testimonial-text">
+                                    <p>"Working with Pargat was an exceptional experience. His deep understanding of blockchain technology and attention to detail resulted in a product that exceeded our expectations. Highly recommend to anyone needing high-quality development work."</p>
+                                </div>
+                                <div class="testimonial-client">
+                                    <div class="client-info">
+                                        <div class="client-image">
+                                            <img src="assets/images/testimonials/client1.jpg" alt="Sarah Johnson">
+                                        </div>
+                                        <div class="client-details">
+                                            <h4>Sarah Johnson</h4>
+                                            <p>CTO, TechNova</p>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-badge">
+                                        <span>DeFi Platform</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide" data-index="1">
+                            <div class="testimonial-content">
+                                <div class="testimonial-text">
+                                    <p>"Pargat's technical expertise with smart contracts is unmatched. He delivered a secure, well-documented solution on time and helped our team understand the implementation details. His communication throughout the project was excellent."</p>
+                                </div>
+                                <div class="testimonial-client">
+                                    <div class="client-info">
+                                        <div class="client-image">
+                                            <img src="assets/images/testimonials/client2.jpg" alt="Michael Chen">
+                                        </div>
+                                        <div class="client-details">
+                                            <h4>Michael Chen</h4>
+                                            <p>Founder, BlockFin</p>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-badge">
+                                        <span>Smart Contract Development</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide" data-index="2">
+                            <div class="testimonial-content">
+                                <div class="testimonial-text">
+                                    <p>"We hired Pargat to build our NFT marketplace, and he delivered a spectacular product. His UI/UX skills combined with blockchain knowledge created a seamless and intuitive platform that our users love. Would definitely work with him again."</p>
+                                </div>
+                                <div class="testimonial-client">
+                                    <div class="client-info">
+                                        <div class="client-image">
+                                            <img src="assets/images/testimonials/client3.jpg" alt="Jessica Williams">
+                                        </div>
+                                        <div class="client-details">
+                                            <h4>Jessica Williams</h4>
+                                            <p>Art Director, DigitalArt</p>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-badge">
+                                        <span>NFT Marketplace</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-controls">
+                        <button class="testimonial-arrow prev" aria-label="Previous testimonial">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="testimonial-dots">
+                            <button class="testimonial-dot active" data-index="0" aria-label="Testimonial 1"></button>
+                            <button class="testimonial-dot" data-index="1" aria-label="Testimonial 2"></button>
+                            <button class="testimonial-dot" data-index="2" aria-label="Testimonial 3"></button>
+                        </div>
+                        <button class="testimonial-arrow next" aria-label="Next testimonial">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-scroll-container">
+            <a href="#contact" class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
@@ -278,7 +683,14 @@
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#education">Education</a>
+                    <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
+                    <a href="#featured-projects">Featured Projects</a>
+                    <a href="#blogs">Blog</a>
+                    <a href="#news">News</a>
+                    <a href="#testimonials">Testimonials</a>
                     <a href="#contact">Contact</a>
                 </div>
             </div>
