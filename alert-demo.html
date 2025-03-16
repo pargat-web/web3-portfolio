@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Alert System Demo</title>
+    <link rel="stylesheet" href="css/alerts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #0f0f1a;
+            --card-bg: #1a1a2e;
+            --text-color: #ffffff;
+            --text-muted: #a0a0a0;
+            --radius-md: 10px;
+            --gradient-primary: linear-gradient(90deg, #00ffa3, #03e1ff);
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            font-family: 'Poppins', 'Inter', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        
+        .demo-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 2.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 189, 0.15);
+        }
+        
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        button {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button.success {
+            border-color: var(--alert-success-color);
+            color: var(--alert-success-color);
+        }
+        
+        button.error {
+            border-color: var(--alert-error-color);
+            color: var(--alert-error-color);
+        }
+        
+        button.warning {
+            border-color: var(--alert-warning-color);
+            color: var(--alert-warning-color);
+        }
+        
+        button.info {
+            border-color: var(--alert-info-color);
+            color: var(--alert-info-color);
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .buttons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="demo-title">Web3 Alert System</h1>
+        <p class="subtitle">Beautiful alert messages with blockchain aesthetic that replace the default browser alerts.</p>
+        
+        <div class="card">
+            <h3>Alert Types</h3>
+            <div class="buttons-grid">
+                <button class="success" onclick="showSuccessAlert('Operation completed successfully!', 'Success')">
+                    <i class="fas fa-check-circle"></i> Success Alert
+                </button>
+                <button class="error" onclick="showErrorAlert('Something went wrong. Please try again.', 'Error')">
+                    <i class="fas fa-exclamation-circle"></i> Error Alert
+                </button>
+                <button class="warning" onclick="showWarningAlert('This action cannot be undone.', 'Warning')">
+                    <i class="fas fa-exclamation-triangle"></i> Warning Alert
+                </button>
+                <button class="info" onclick="showInfoAlert('Your transaction is being processed.', 'Information')">
+                    <i class="fas fa-info-circle"></i> Info Alert
+                </button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>Default Alert Override</h3>
+            <button onclick="alert('This is using the native alert function that we overrode!')">
+                <i class="fas fa-bell"></i> Show Native Alert (Overridden)
+            </button>
+        </div>
+        
+        <div class="card">
+            <h3>Confirm Dialog</h3>
+            <button onclick="showConfirmDemo()">
+                <i class="fas fa-question-circle"></i> Show Confirm Dialog
+            </button>
+            <div class="code-block" id="confirm-result">// Result will appear here after confirmation</div>
+        </div>
+        
+        <div class="card">
+            <h3>Usage Examples</h3>
+            <div class="code-block">
+// Success alert
+showSuccessAlert('Operation completed successfully!', 'Success');
+
+// Error alert
+showErrorAlert('Something went wrong. Please try again.', 'Error');
+
+// Warning alert
+showWarningAlert('This action cannot be undone.', 'Warning');
+
+// Info alert
+showInfoAlert('Your transaction is being processed.', 'Information');
+
+// Confirm dialog (returns a Promise)
+showConfirmAlert('Are you sure you want to proceed?', 'Confirm')
+  .then(confirmed => {
+    if (confirmed) {
+      // User clicked Confirm
+    } else {
+      // User clicked Cancel
+    }
+  });
+            </div>
+        </div>
+    </div>
+
+    <script src="js/alerts.js"></script>
+    <script>
+        function showConfirmDemo() {
+            showConfirmAlert('Are you sure you want to proceed with this transaction?', 'Confirm Transaction')
+                .then(confirmed => {
+                    document.getElementById('confirm-result').textContent = 
+                        confirmed 
+                            ? '// User confirmed: true\n// Transaction would be processed here'
+                            : '// User confirmed: false\n// Transaction was cancelled';
+                });
+        }
+        
+        // Show a welcome alert when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                showInfoAlert('Welcome to the Web3 Alert System Demo!', 'Hello There');
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

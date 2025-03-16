@@ -23,9 +23,6 @@ function initEthereumAnimations() {
     
     // Add animation classes to elements
     applyEthereumClasses();
-    
-    // Setup gas price animation
-    setupGasPriceAnimation();
 }
 
 /**
@@ -173,33 +170,6 @@ function applyEthereumClasses() {
     buttons.forEach(button => {
         button.classList.add('eth-button');
     });
-}
-
-/**
- * Setup the gas price animation indicator
- */
-function setupGasPriceAnimation() {
-    // Add a gas price indicator to the header
-    const header = document.querySelector('.navbar');
-    if (!header) return;
-    
-    const gasPrice = document.createElement('div');
-    gasPrice.className = 'gas-price-animation';
-    
-    // Set random gas prices and update them periodically
-    const updateGasPrice = () => {
-        const price = Math.floor(Math.random() * 100) + 20;
-        gasPrice.textContent = `${price} Gwei`;
-    };
-    
-    // Initial gas price
-    updateGasPrice();
-    
-    // Update gas price every 10 seconds
-    setInterval(updateGasPrice, 10000);
-    
-    // Add to header
-    header.appendChild(gasPrice);
 }
 
 /**

@@ -1,0 +1,231 @@
+/* Custom Alert Styles with Web3/Blockchain Aesthetic */
+
+:root {
+  --alert-success-bg: rgba(0, 255, 163, 0.1);
+  --alert-success-border: rgba(0, 255, 163, 0.3);
+  --alert-success-color: rgb(0, 255, 163);
+  
+  --alert-error-bg: rgba(255, 71, 87, 0.1);
+  --alert-error-border: rgba(255, 71, 87, 0.3);
+  --alert-error-color: rgb(255, 71, 87);
+  
+  --alert-warning-bg: rgba(255, 184, 0, 0.1);
+  --alert-warning-border: rgba(255, 184, 0, 0.3);
+  --alert-warning-color: rgb(255, 184, 0);
+  
+  --alert-info-bg: rgba(33, 150, 243, 0.1);
+  --alert-info-border: rgba(33, 150, 243, 0.3);
+  --alert-info-color: rgb(33, 150, 243);
+}
+
+/* Alert container */
+.custom-alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  width: calc(100% - 40px);
+  pointer-events: none;
+}
+
+/* Individual alert */
+.custom-alert {
+  display: flex;
+  padding: 15px;
+  border-radius: var(--radius-md, 10px);
+  background-color: var(--card-bg, #1a1a2e);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border-left: 3px solid transparent;
+  pointer-events: auto;
+}
+
+/* Alert show state */
+.custom-alert.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Alert hide state */
+.custom-alert.hide {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* Alert types */
+.custom-alert.success {
+  border-color: var(--alert-success-color);
+  background-color: var(--alert-success-bg);
+}
+
+.custom-alert.error {
+  border-color: var(--alert-error-color);
+  background-color: var(--alert-error-bg);
+}
+
+.custom-alert.warning {
+  border-color: var(--alert-warning-color);
+  background-color: var(--alert-warning-bg);
+}
+
+.custom-alert.info {
+  border-color: var(--alert-info-color);
+  background-color: var(--alert-info-bg);
+}
+
+/* Alert icon */
+.custom-alert-icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.custom-alert.success .custom-alert-icon {
+  color: var(--alert-success-color);
+}
+
+.custom-alert.error .custom-alert-icon {
+  color: var(--alert-error-color);
+}
+
+.custom-alert.warning .custom-alert-icon {
+  color: var(--alert-warning-color);
+}
+
+.custom-alert.info .custom-alert-icon {
+  color: var(--alert-info-color);
+}
+
+/* Alert content */
+.custom-alert-content {
+  flex: 1;
+}
+
+.custom-alert-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 3px;
+  color: var(--text-color, #ffffff);
+}
+
+.custom-alert-message {
+  font-size: 14px;
+  color: var(--text-muted, #a0a0a0);
+  line-height: 1.4;
+}
+
+/* Close button */
+.custom-alert-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #a0a0a0);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.custom-alert-close:hover {
+  color: var(--text-color, #ffffff);
+}
+
+/* Progress bar */
+.custom-alert-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.2)
+  );
+  width: 100%;
+  animation: progress-shrink linear forwards;
+}
+
+.custom-alert.success .custom-alert-progress {
+  background: linear-gradient(90deg, 
+    var(--alert-success-color),
+    rgba(0, 255, 163, 0.3)
+  );
+}
+
+.custom-alert.error .custom-alert-progress {
+  background: linear-gradient(90deg, 
+    var(--alert-error-color),
+    rgba(255, 71, 87, 0.3)
+  );
+}
+
+.custom-alert.warning .custom-alert-progress {
+  background: linear-gradient(90deg, 
+    var(--alert-warning-color),
+    rgba(255, 184, 0, 0.3)
+  );
+}
+
+.custom-alert.info .custom-alert-progress {
+  background: linear-gradient(90deg, 
+    var(--alert-info-color),
+    rgba(33, 150, 243, 0.3)
+  );
+}
+
+@keyframes progress-shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Blockchain decorative elements */
+.custom-alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 25L25 50L50 75L75 50L50 25Z' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center right;
+  pointer-events: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .custom-alert-container {
+    top: 10px;
+    right: 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .custom-alert {
+    padding: 12px;
+  }
+  
+  .custom-alert-title {
+    font-size: 14px;
+  }
+  
+  .custom-alert-message {
+    font-size: 13px;
+  }
+} 

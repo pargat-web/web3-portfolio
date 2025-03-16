@@ -75,7 +75,7 @@ body::before {
 /* Container */
 .container {
     width: 100%;
-    max-width: var(--container-xl); /* Reduced from xxl to xl */
+    max-width: var(--container-xl);
     margin: 0 auto;
     padding: 0 var(--space-md);
 }
@@ -187,6 +187,11 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0 auto;
+    max-width: var(--container-xxl);
 }
 
 .logo {
@@ -210,30 +215,45 @@ a:hover {
 .navbar {
     display: flex;
     align-items: center;
+    justify-content: flex-start; /* Change to flex-start to extend nav-list leftward */
     position: relative;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .nav-list {
     display: flex;
-    gap: 0.5rem; /* Reduced from 0.7rem */
+    align-items: center;
     list-style: none;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    padding-right: 0; /* Remove right padding */
     background: rgba(26, 30, 36, 0.5);
-    padding: 0.5rem; /* Reduced from 0.7rem */
     border-radius: var(--radius-pill);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(0, 255, 189, 0.08);
+    margin-left: 2rem;
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: auto;
+    flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .nav-link {
     color: var(--text-muted);
     font-weight: 500;
-    font-size: 0.95rem; /* Reduced from 1.15rem */
+    font-size: 0.9rem; /* Slightly smaller font */
     transition: all 0.3s ease;
-    padding: 0.6rem 1.2rem; /* Reduced from 0.8rem 1.5rem */
+    padding: 0.5rem 1rem; /* Reduced padding */
     border-radius: var(--radius-pill);
     display: inline-block;
     letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
 .nav-link i {
@@ -262,6 +282,130 @@ a:hover {
     color: var(--text-color);
     background: var(--gradient-primary);
     box-shadow: 0 4px 10px rgba(59, 95, 255, 0.3);
+}
+
+/* Header donation buttons container */
+.header .crypto-donation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Donation buttons */
+.connect-wallet-btn, .donate-eth-btn {
+    white-space: nowrap; /* Prevent text wrapping */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Wallet buttons in nav-list - moved to end */
+.wallet-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto; /* Push to the right edge */
+    margin-right: 0;
+    padding-right: 0.5rem; /* Add small padding to align with nav-list border */
+}
+
+.wallet-buttons .connect-wallet-btn {
+    background-color: transparent;
+    margin-right: 0;
+}
+
+/* Donate button (last element) */
+.wallet-buttons .donate-eth-btn {
+    margin-right: 0;
+    border-top-right-radius: var(--radius-pill);
+    border-bottom-right-radius: var(--radius-pill);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+    .wallet-buttons {
+        margin-left: auto;
+        gap: 0.3rem;
+    }
+    
+    .nav-list {
+        margin-left: 1.5rem;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-list {
+        margin-left: 1rem;
+        padding-right: 0;
+    }
+    
+    .wallet-buttons {
+        margin-left: auto;
+    }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .nav-list {
+        margin-left: 0;
+        padding-right: 1rem;
+    }
+    
+    .wallet-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        margin-left: 0; /* Reset on mobile */
+    }
+    
+    .wallet-buttons .connect-wallet-btn,
+    .wallet-buttons .donate-eth-btn {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+        border-radius: var(--radius-md);
+    }
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 1200px) {
+    .nav-link {
+        padding: 0.5rem 0.8rem; /* Further reduce padding on medium screens */
+        font-size: 0.85rem;
+    }
+    
+    .connect-wallet-btn, .donate-eth-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        width: 75%;
+    }
+    
+    .nav-list {
+        gap: 0.3rem;
+        padding: 0.4rem;
+    }
+    
+    .nav-link {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 868px) {
+    /* Hide less important nav items on smaller screens before hamburger kicks in */
+    .nav-list li:nth-child(5),
+    .nav-list li:nth-child(6) {
+        display: none;
+    }
 }
 
 /* Section Styles */
@@ -1626,71 +1770,193 @@ section:not(.hero-section)::after {
 /* Footer */
 .footer {
     background: var(--darker-bg);
-    border-top: 1px solid rgba(59, 95, 255, 0.1);
-    padding: var(--space-lg) 0;
-    margin-top: var(--space-xxl);
+    padding: 3rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 255, 189, 0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 189, 0.2), transparent);
+    filter: blur(2px);
+    opacity: 0.7;
+    z-index: 0;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-content p {
-    font-size: 1.15rem;
     color: var(--text-muted);
+    text-align: center;
+    font-size: 0.95rem;
+    max-width: 600px;
+    line-height: 1.6;
 }
 
 .footer-links {
     display: flex;
-    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
 }
 
 .footer-links a {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    text-decoration: none;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    position: relative;
+    padding: 0 0.5rem;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: var(--text-color);
+    transform: translateY(-3px);
 }
 
-/* Media query for mobile footer */
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* Footer wallet buttons */
+.footer-wallet-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.footer-wallet-buttons::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    width: 50px;
+    height: 1px;
+    background: var(--primary-color);
+    transform: translateX(-50%);
+    opacity: 0.5;
+}
+
+.footer-wallet-buttons .connect-wallet-btn,
+.footer-wallet-buttons .donate-eth-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: var(--radius-pill);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.footer-wallet-buttons .connect-wallet-btn:hover,
+.footer-wallet-buttons .donate-eth-btn:not(:disabled):hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer responsive styles */
 @media screen and (max-width: 768px) {
+    .footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+    
     .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--space-md);
+        gap: 1.2rem;
     }
     
     .footer-content p {
-        margin-bottom: var(--space-md);
+        font-size: 0.85rem;
+        padding: 0 1rem;
     }
     
     .footer-links {
+        gap: 0.8rem;
         justify-content: center;
+        padding: 0 0.5rem;
         flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .footer-wallet-buttons {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .footer-wallet-buttons .connect-wallet-btn,
+    .footer-wallet-buttons .donate-eth-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .footer {
-        padding: var(--space-md) 0;
+        padding: 2rem 0 1.5rem;
     }
     
     .footer-content p {
-        font-size: 1rem;
-        margin-bottom: var(--space-sm);
+        font-size: 0.8rem;
     }
     
     .footer-links {
-        gap: var(--space-sm);
+        gap: 0.5rem;
+        margin: 0.3rem 0;
     }
     
     .footer-links a {
-        font-size: 0.95rem;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.4rem;
+    }
+    
+    .footer-wallet-buttons {
+        gap: 0.6rem;
+    }
+    
+    .footer-wallet-buttons .connect-wallet-btn,
+    .footer-wallet-buttons .donate-eth-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -1906,8 +2172,9 @@ section:not(.hero-section)::after {
     .hamburger {
         display: block;
         z-index: 102;
-        margin-left: 0.8rem; /* Reduced from 1rem */
+        margin-left: auto; /* Push to the right edge of navbar */
         position: relative;
+        margin-right: 0.5rem; /* Add right margin to hamburger menu */
     }
     
     .hamburger.active {
@@ -1948,6 +2215,7 @@ section:not(.hero-section)::after {
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Reduced from 10px 30px */
         border: 1px solid rgba(0, 255, 189, 0.1);
         transform: translateX(100%); /* Start off-screen */
+        margin-right: 0; /* Reset margin for mobile menu */
     }
     
     .nav-list.active {
@@ -2052,6 +2320,22 @@ section:not(.hero-section)::after {
     .hero-section {
         padding-top: 6rem; /* Increased from 5rem */
         padding-bottom: var(--space-lg); /* Added explicit bottom padding */
+    }
+    
+    /* Mobile Footer Crypto Donation Buttons */
+    .footer .crypto-donation-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        margin: 1.5rem auto 0;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .footer .connect-wallet-btn, .footer .donate-eth-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        flex: 0 0 auto;
     }
 }
 
@@ -3730,5 +4014,886 @@ section:not(.hero-section) .section-scroll-container {
     
     .loader-text {
         font-size: 0.9rem;
+    }
+}
+
+/* Ethereum Donation Buttons */
+.crypto-donation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.connect-wallet-btn, .donate-eth-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.connect-wallet-btn {
+    background-color: transparent;
+}
+
+.donate-eth-btn {
+    background: var(--gradient-primary);
+    background-size: 200% auto;
+    color: var(--dark-bg);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 189, 0.3);
+    z-index: 1;
+}
+
+.donate-eth-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-secondary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.donate-eth-btn:hover:before {
+    opacity: 1;
+}
+
+.connect-wallet-btn:hover {
+    background-color: var(--light-card-bg);
+    border-color: var(--accent-color);
+}
+
+.connect-wallet-btn.connected {
+    background-color: rgba(0, 255, 189, 0.1);
+    border-color: var(--primary-color);
+}
+
+.donate-eth-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.donate-eth-btn:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 255, 189, 0.5);
+}
+
+/* Footer donation buttons - smaller version */
+.footer .crypto-donation-container {
+    margin-top: 1rem;
+    justify-content: center;
+    margin-left: 0; /* Reset left margin in footer */
+    margin-right: 0; /* Reset right margin in footer */
+}
+
+.footer .connect-wallet-btn, .footer .donate-eth-btn {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header .crypto-donation-container {
+        display: none; /* Hide in header on mobile */
+    }
+    
+    .footer .crypto-donation-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Transaction Success Notification */
+.eth-tx-success {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    z-index: 9999;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    max-width: 350px;
+}
+
+.eth-tx-success.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.eth-tx-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--dark-bg);
+    font-size: 1.2rem;
+}
+
+.eth-tx-details h4 {
+    margin: 0 0 0.5rem;
+    color: var(--primary-color);
+}
+
+.eth-tx-details p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.eth-tx-hash {
+    color: var(--text-muted) !important;
+    font-size: 0.8rem !important;
+    margin-top: 0.3rem !important;
+}
+
+@media (max-width: 576px) {
+    .eth-tx-success {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: none;
+    }
+}
+
+/* Crypto Donation Container - Header */
+.crypto-donation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+/* Donation Buttons */
+.connect-wallet-btn, .donate-eth-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.connect-wallet-btn {
+    background-color: transparent;
+}
+
+.donate-eth-btn {
+    background: var(--gradient-primary);
+    background-size: 200% auto;
+    color: var(--dark-bg);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 189, 0.3);
+    z-index: 1;
+}
+
+/* Footer Donation Container */
+.footer .crypto-donation-container {
+    margin-top: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1280px) {
+    .crypto-donation-container {
+        margin-left: 1rem;
+    }
+    
+    .connect-wallet-btn, .donate-eth-btn {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        position: relative;
+    }
+    
+    .crypto-donation-container {
+        position: absolute;
+        right: 5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .crypto-donation-container {
+        display: none; /* Hide in header on mobile */
+    }
+    
+    .footer .crypto-donation-container {
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .hamburger {
+        margin-left: auto; /* Push hamburger to the right on mobile */
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .header .container {
+        padding: 0 var(--space-sm);
+    }
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.dropdown-toggle i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 189, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.6rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 255, 189, 0.1);
+    color: var(--text-color);
+    padding-left: 1.2rem;
+}
+
+/* Remove gas price animation styles */
+.gas-price-animation {
+    display: none;
+}
+
+/* Ensure dropdown works on mobile */
+@media screen and (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        max-height: 500px;
+    }
+    
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .dropdown-item {
+        padding: 0.5rem 0;
+        font-size: 0.85rem;
+    }
+    
+    .dropdown-item:hover {
+        background: transparent;
+        padding-left: 0.3rem;
+    }
+}
+
+/* Donation buttons in header */
+.header .crypto-donation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1rem; /* Add right margin */
+    position: relative;
+}
+
+/* Donate button with added margin */
+.header .donate-eth-btn {
+    margin-right: 0.5rem; /* Add right margin to donation button */
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 992px) {
+    .header .crypto-donation-container {
+        margin-right: 1.5rem; /* Increase right margin on medium screens */
+    }
+    
+    .navbar {
+        padding-right: 0.8rem; /* Increase right padding on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .crypto-donation-container {
+        position: absolute;
+        right: 5.5rem; /* Adjust position on mobile */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.header .crypto-donation-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    position: absolute;
+    right: 0;
+}
+
+@media (max-width: 992px) {
+    .header .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .header .crypto-donation-container {
+        margin-right: 1.5rem;
+        margin-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        width: auto;
+        justify-content: flex-end;
+    }
+    
+    .hamburger {
+        display: block;
+        z-index: 102;
+        margin-left: auto;
+        position: absolute;
+        right: 1rem;
+        margin-right: 0;
+    }
+    
+    /* Show all nav items in mobile menu */
+    .nav-list.active li:nth-child(5),
+    .nav-list.active li:nth-child(6) {
+        display: block;
+    }
+    
+    .nav-link {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        position: relative;
+    }
+    
+    .header .crypto-donation-container {
+        display: none;
+    }
+}
+
+.wallet-buttons .connect-wallet-btn,
+.wallet-buttons .donate-eth-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.wallet-buttons .connect-wallet-btn {
+    background-color: transparent;
+}
+
+.wallet-buttons .donate-eth-btn {
+    background: var(--gradient-primary);
+    background-size: 200% auto;
+    color: var(--dark-bg);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 189, 0.3);
+    z-index: 1;
+}
+
+.wallet-buttons .donate-eth-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-secondary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.wallet-buttons .donate-eth-btn:hover:before {
+    opacity: 1;
+}
+
+.wallet-buttons .connect-wallet-btn:hover {
+    background-color: var(--light-card-bg);
+    border-color: var(--accent-color);
+}
+
+.wallet-buttons .connect-wallet-btn.connected {
+    background-color: rgba(0, 255, 189, 0.1);
+    border-color: var(--primary-color);
+}
+
+.wallet-buttons .donate-eth-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.wallet-buttons .donate-eth-btn:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 255, 189, 0.5);
+}
+
+/* Footer wallet buttons */
+.footer-wallet-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.footer-wallet-buttons .connect-wallet-btn,
+.footer-wallet-buttons .donate-eth-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-wallet-buttons {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .footer-wallet-buttons .connect-wallet-btn,
+    .footer-wallet-buttons .donate-eth-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Footer social links */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+.footer-social a {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 255, 189, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.footer-social a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.footer-social a:hover {
+    color: var(--dark-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-social a:hover::before {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-social {
+        gap: 1rem;
+    }
+    
+    .footer-social a {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-social {
+        gap: 0.8rem;
+    }
+    
+    .footer-social a {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Footer Ethereum animations */
+.footer {
+    position: relative;
+    overflow: hidden;
+}
+
+.footer .eth-accent {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    opacity: 0.03;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.footer .eth-accent-1 {
+    top: -50px;
+    left: 5%;
+    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+    animation: footer-float 15s ease-in-out infinite;
+}
+
+.footer .eth-accent-2 {
+    bottom: -70px;
+    right: 8%;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    animation: footer-float 18s ease-in-out infinite reverse;
+}
+
+@keyframes footer-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer .eth-accent {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Custom Alert Messages */
+.custom-alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 350px;
+    max-width: 90vw;
+    pointer-events: none;
+}
+
+.custom-alert {
+    position: relative;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    pointer-events: auto;
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                opacity 0.4s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.custom-alert.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.custom-alert::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+}
+
+.custom-alert::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: alert-progress 3s linear forwards;
+    transform-origin: left;
+}
+
+@keyframes alert-progress {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+}
+
+.custom-alert-icon {
+    margin-right: 15px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    flex-shrink: 0;
+}
+
+.custom-alert-content {
+    flex-grow: 1;
+}
+
+.custom-alert-title {
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 1rem;
+}
+
+.custom-alert-message {
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.custom-alert-close {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-left: 10px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    padding: 0;
+    color: var(--text-color);
+}
+
+.custom-alert-close:hover {
+    opacity: 1;
+}
+
+/* Alert Types */
+.custom-alert.success {
+    background: rgba(13, 36, 25, 0.95);
+    border: 1px solid rgba(0, 255, 189, 0.15);
+}
+
+.custom-alert.success::before {
+    background: var(--primary-color);
+}
+
+.custom-alert.success .custom-alert-icon {
+    color: var(--primary-color);
+}
+
+.custom-alert.error {
+    background: rgba(36, 13, 20, 0.95);
+    border: 1px solid rgba(255, 0, 85, 0.15);
+}
+
+.custom-alert.error::before {
+    background: var(--accent-color);
+}
+
+.custom-alert.error .custom-alert-icon {
+    color: var(--accent-color);
+}
+
+.custom-alert.warning {
+    background: rgba(36, 32, 13, 0.95);
+    border: 1px solid rgba(255, 190, 0, 0.15);
+}
+
+.custom-alert.warning::before {
+    background: #ffbe00;
+}
+
+.custom-alert.warning .custom-alert-icon {
+    color: #ffbe00;
+}
+
+.custom-alert.info {
+    background: rgba(13, 22, 36, 0.95);
+    border: 1px solid rgba(93, 38, 193, 0.15);
+}
+
+.custom-alert.info::before {
+    background: var(--secondary-color);
+}
+
+.custom-alert.info .custom-alert-icon {
+    color: var(--secondary-color);
+}
+
+/* Animations for alerts */
+@keyframes alert-fadeout {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(120%); }
+}
+
+.custom-alert.hide {
+    animation: alert-fadeout 0.4s forwards;
+}
+
+/* Cyber-themed progress bar inside alerts */
+.custom-alert-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 100%;
+    transform-origin: left;
+    animation: progressBar 5s linear forwards;
+}
+
+@keyframes progressBar {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(0); }
+}
+
+/* Make alerts responsive */
+@media screen and (max-width: 480px) {
+    .custom-alert-container {
+        width: calc(100% - 40px);
+        max-width: none;
+    }
+    
+    .custom-alert {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .custom-alert-icon {
+        font-size: 1.3rem;
+        margin-right: 10px;
+    }
+    
+    .custom-alert-title {
+        font-size: 0.95rem;
     }
 }

@@ -800,4 +800,43 @@ function initTestimonialsCarousel() {
 
     // Initialize first card
     showCard(currentIndex);
-} 
+}
+
+// Handle dropdown menus on mobile
+const dropdowns = document.querySelectorAll('.dropdown');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+// Add click event for mobile dropdown toggles
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        // Only run on mobile
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            
+            // Close other open dropdowns
+            dropdowns.forEach(dropdown => {
+                if (dropdown !== parent && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            // Toggle this dropdown
+            parent.classList.toggle('active');
+        }
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+        const isDropdownButton = e.target.matches('.dropdown-toggle') || 
+                                e.target.closest('.dropdown-toggle');
+        
+        if (!isDropdownButton) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    }
+}); 
